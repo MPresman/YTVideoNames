@@ -17,7 +17,7 @@ def googleYoutubePage():
     driver = webdriver.Chrome("/Users/michaelpresman/PycharmProjects/YoutubeChannelVideos/chromedriver")
     driver.get(getChannelName())
     element = driver.find_element_by_class_name("s") #this is where the link to the proper youtube page lives
-    keys = element.text #this grabs the link to the youtube page + other crap that will be cut
+    keys = element.text #this grabs the link to the youtube page + other information that will need to be cut
     driver.close()
 
     splitKeys = keys.split(" ") #this needs to be split, because aside from the link it grabs the page description, which we need to truncate
@@ -53,9 +53,9 @@ def getVideoTitles():
 
 def clickLoadMore(driver):
     clickButton = driver.find_element_by_class_name("load-more-button")
-    for i in range(12):  # this is the only way I got the button to actually click and load. through bruteforce
+    for i in range(12):  # Getting the element to be clicked needed to be done through bruteforce
         clickButton.click()
-        driver.implicitly_wait(1)  # i dont know why this makes it work, but it does
+        driver.implicitly_wait(1)  # need to wait per each click
 
 
 def scrapeTitles(driver):
